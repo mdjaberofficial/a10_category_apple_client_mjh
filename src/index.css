@@ -5,6 +5,3 @@
     themes: light --default;
 };
 
-a.active {
-  @apply bg-base-300;
-}

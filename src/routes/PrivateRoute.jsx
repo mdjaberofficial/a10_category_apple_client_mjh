@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from 'react-router';
 import { useContext } from 'react';
-import { AuthContext } from '../context/AuthProvider'; // Your Firebase auth context
+import { AuthContext } from '../context/AuthContext';
+ // Your Firebase auth context
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);

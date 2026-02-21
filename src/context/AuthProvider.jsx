@@ -8,8 +8,13 @@ import {
   GoogleAuthProvider,
   updateProfile,
 } from 'firebase/auth';
-import { auth } from '../firebase/firebase.config'; 
-import { AuthContext } from './AuthContext'; // <-- Importing the context from our new file
+
+
+import { auth } from '../firebase/firebase.init';
+import { AuthContext } from './AuthContext';
+
+
+
 
 const googleProvider = new GoogleAuthProvider();
 
