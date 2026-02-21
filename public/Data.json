@@ -1,0 +1,257 @@
+[
+  {
+    "id": "1",
+    "title": "Classic Margherita Pizza",
+    "image": "https://loremflickr.com/600/400/pizza?lock=1",
+    "cuisineType": "Italian",
+    "likeCount": 142,
+    "ingredients": [
+      "1 Pizza dough",
+      "1/2 cup Tomato sauce",
+      "8 oz Fresh mozzarella cheese",
+      "Fresh basil leaves",
+      "1 tbsp Extra virgin olive oil"
+    ],
+    "instructions": "Preheat your oven to 475°F (245°C). Roll out the pizza dough on a floured surface. Spread the tomato sauce evenly. Top with slices of fresh mozzarella and bake for 10-12 minutes until the crust is golden. Garnish with fresh basil and a drizzle of olive oil before serving.",
+    "preparationTime": 20,
+    "categories": ["Dinner", "Lunch"]
+  },
+  {
+    "id": "2",
+    "title": "Spicy Chicken Tacos",
+    "image": "https://loremflickr.com/600/400/tacos?lock=2",
+    "cuisineType": "Mexican",
+    "likeCount": 385,
+    "ingredients": [
+      "1 lb Chicken breast, diced",
+      "2 tbsp Taco seasoning",
+      "8 Corn tortillas",
+      "1/2 cup Salsa",
+      "Fresh cilantro and chopped onions"
+    ],
+    "instructions": "In a skillet, cook the diced chicken with taco seasoning until fully cooked. Warm the corn tortillas in a dry pan. Assemble the tacos by filling the tortillas with chicken, salsa, onions, and cilantro.",
+    "preparationTime": 15,
+    "categories": ["Lunch", "Dinner"]
+  },
+  {
+    "id": "3",
+    "title": "Creamy Coconut Curry",
+    "image": "https://loremflickr.com/600/400/curry?lock=3",
+    "cuisineType": "Indian",
+    "likeCount": 89,
+    "ingredients": [
+      "1 can Coconut milk",
+      "2 tbsp Yellow curry paste",
+      "1 cup Mixed vegetables",
+      "1 block Tofu, cubed",
+      "1 tbsp Soy sauce"
+    ],
+    "instructions": "Heat a pot over medium heat and briefly toast the curry paste. Pour in the coconut milk and stir until smooth. Add the vegetables and tofu, simmering for 15 minutes until vegetables are tender. Serve hot over rice.",
+    "preparationTime": 25,
+    "categories": ["Dinner"]
+  },
+  {
+    "id": "4",
+    "title": "Kung Pao Chicken",
+    "image": "https://loremflickr.com/600/400/chicken?lock=4",
+    "cuisineType": "Chinese",
+    "likeCount": 215,
+    "ingredients": [
+      "1 lb Chicken thighs",
+      "1/2 cup Roasted peanuts",
+      "3 Dried red chilies",
+      "2 tbsp Soy sauce",
+      "1 tbsp Cornstarch"
+    ],
+    "instructions": "Marinate the chicken in soy sauce and cornstarch for 10 minutes. Stir-fry the chicken in a hot wok until browned. Add dried chilies and peanuts, tossing for another 2 minutes. Stir in your favorite stir-fry sauce and serve.",
+    "preparationTime": 30,
+    "categories": ["Dinner"]
+  },
+  {
+    "id": "5",
+    "title": "Fluffy Buttermilk Pancakes",
+    "image": "https://loremflickr.com/600/400/pancakes?lock=5",
+    "cuisineType": "Others",
+    "likeCount": 420,
+    "ingredients": [
+      "2 cups All-purpose flour",
+      "2 tbsp Sugar",
+      "2 tsp Baking powder",
+      "2 cups Buttermilk",
+      "2 Eggs"
+    ],
+    "instructions": "Whisk dry ingredients in one bowl and wet ingredients in another. Combine them gently. Pour 1/4 cup of batter onto a hot, buttered griddle. Flip when bubbles form on the surface and cook until golden brown.",
+    "preparationTime": 15,
+    "categories": ["Breakfast"]
+  },
+  {
+    "id": "6",
+    "title": "Classic Tiramisu",
+    "image": "https://loremflickr.com/600/400/tiramisu?lock=6",
+    "cuisineType": "Italian",
+    "likeCount": 650,
+    "ingredients": [
+      "1 package Ladyfingers",
+      "1 cup Strong brewed espresso",
+      "8 oz Mascarpone cheese",
+      "1/2 cup Sugar",
+      "Cocoa powder"
+    ],
+    "instructions": "Dip ladyfingers quickly into the cold espresso and arrange a layer in a dish. Whisk mascarpone and sugar until smooth, then spread half over the ladyfingers. Repeat the layers. Dust heavily with cocoa powder and chill for 4 hours.",
+    "preparationTime": 20,
+    "categories": ["Desserts"]
+  },
+  {
+    "id": "7",
+    "title": "Huevos Rancheros",
+    "image": "https://loremflickr.com/600/400/eggs?lock=7",
+    "cuisineType": "Mexican",
+    "likeCount": 178,
+    "ingredients": [
+      "2 Corn tortillas",
+      "2 Large eggs",
+      "1/2 cup Refried beans",
+      "1/4 cup Ranchero sauce",
+      "Avocado slices"
+    ],
+    "instructions": "Lightly fry the tortillas until somewhat crisp. Spread warm refried beans on top. Fry the eggs to your liking and place one on each tortilla. Smother in warm ranchero sauce and top with avocado.",
+    "preparationTime": 15,
+    "categories": ["Breakfast"]
+  },
+  {
+    "id": "8",
+    "title": "Mango Lassi",
+    "image": "https://loremflickr.com/600/400/smoothie?lock=8",
+    "cuisineType": "Indian",
+    "likeCount": 295,
+    "ingredients": [
+      "1 cup Ripe mango chunks",
+      "1 cup Plain yogurt",
+      "1/2 cup Milk",
+      "2 tbsp Sugar",
+      "Pinch of cardamom"
+    ],
+    "instructions": "Place the mango, yogurt, milk, sugar, and cardamom into a blender. Blend until completely smooth and creamy. Pour into glasses over a little ice and serve immediately.",
+    "preparationTime": 5,
+    "categories": ["Breakfast", "Desserts"]
+  },
+  {
+    "id": "9",
+    "title": "Spaghetti Carbonara",
+    "image": "https://loremflickr.com/600/400/pasta?lock=9",
+    "cuisineType": "Italian",
+    "likeCount": 540,
+    "ingredients": [
+      "400g Spaghetti",
+      "150g Pancetta",
+      "2 Large eggs",
+      "50g Pecorino cheese",
+      "Black pepper"
+    ],
+    "instructions": "Boil the pasta in salted water. Fry the pancetta until crispy. Beat the eggs and mix with grated cheese. Toss the hot pasta with pancetta, remove from heat, and quickly stir in the egg mixture to create a creamy sauce.",
+    "preparationTime": 25,
+    "categories": ["Dinner"]
+  },
+  {
+    "id": "10",
+    "title": "Sweet and Sour Pork",
+    "image": "https://loremflickr.com/600/400/pork?lock=10",
+    "cuisineType": "Chinese",
+    "likeCount": 210,
+    "ingredients": [
+      "1 lb Pork tenderloin",
+      "Bell peppers and pineapple chunks",
+      "1/4 cup Ketchup",
+      "2 tbsp Rice vinegar",
+      "1 tbsp Soy sauce"
+    ],
+    "instructions": "Coat pork in cornstarch and fry until crispy. In a separate pan, cook bell peppers and pineapple. Mix ketchup, vinegar, soy sauce, and sugar to make the sauce. Combine everything in the pan and simmer until thick.",
+    "preparationTime": 35,
+    "categories": ["Lunch", "Dinner"]
+  },
+  {
+    "id": "11",
+    "title": "Churros with Chocolate Sauce",
+    "image": "https://loremflickr.com/600/400/churros?lock=11",
+    "cuisineType": "Mexican",
+    "likeCount": 732,
+    "ingredients": [
+      "1 cup Water",
+      "1 cup All-purpose flour",
+      "2 tbsp Sugar",
+      "Oil for frying",
+      "Dark chocolate for melting"
+    ],
+    "instructions": "Boil water, butter, and sugar. Stir in flour until a dough forms. Pipe the dough into hot oil and fry until golden. Roll in cinnamon sugar and serve with melted dark chocolate.",
+    "preparationTime": 40,
+    "categories": ["Desserts"]
+  },
+  {
+    "id": "12",
+    "title": "Eggs Benedict",
+    "image": "https://loremflickr.com/600/400/breakfast?lock=12",
+    "cuisineType": "Others",
+    "likeCount": 415,
+    "ingredients": [
+      "2 English muffins",
+      "4 Poached eggs",
+      "4 slices Canadian bacon",
+      "3 Egg yolks",
+      "1/2 cup Melted butter"
+    ],
+    "instructions": "Toast the English muffins and warm the bacon. Whisk egg yolks and lemon juice over a double boiler, slowly streaming in melted butter to make Hollandaise sauce. Assemble muffins, bacon, eggs, and top with sauce.",
+    "preparationTime": 25,
+    "categories": ["Breakfast"]
+  },
+  {
+    "id": "13",
+    "title": "Beef Biryani",
+    "image": "https://loremflickr.com/600/400/biryani?lock=13",
+    "cuisineType": "Indian",
+    "likeCount": 890,
+    "ingredients": [
+      "2 cups Basmati rice",
+      "1 lb Beef chunks",
+      "Biryani spices (cloves, cardamom, cinnamon)",
+      "1/2 cup Yogurt",
+      "Fried onions"
+    ],
+    "instructions": "Marinate beef in yogurt and spices. Cook the beef until tender. Partially boil the rice. Layer the cooked beef and rice in a heavy-bottomed pot, top with fried onions and mint, and slow-cook (dum) for 20 minutes.",
+    "preparationTime": 60,
+    "categories": ["Dinner"]
+  },
+  {
+    "id": "14",
+    "title": "Avocado Toast with Egg",
+    "image": "https://loremflickr.com/600/400/toast?lock=14",
+    "cuisineType": "Others",
+    "likeCount": 320,
+    "ingredients": [
+      "2 slices Sourdough bread",
+      "1 Ripe avocado",
+      "2 Eggs (fried or poached)",
+      "Red pepper flakes",
+      "Salt and pepper"
+    ],
+    "instructions": "Toast the sourdough bread. Mash the avocado with a pinch of salt and a squeeze of lime juice, then spread it evenly on the toast. Top each slice with an egg and sprinkle with red pepper flakes.",
+    "preparationTime": 10,
+    "categories": ["Breakfast"]
+  },
+  {
+    "id": "15",
+    "title": "Chocolate Lava Cake",
+    "image": "https://loremflickr.com/600/400/cake?lock=15",
+    "cuisineType": "Others",
+    "likeCount": 945,
+    "ingredients": [
+      "1/2 cup Butter",
+      "4 oz Semi-sweet chocolate",
+      "2 Eggs",
+      "1/4 cup Sugar",
+      "2 tbsp Flour"
+    ],
+    "instructions": "Preheat oven to 425°F (220°C). Melt butter and chocolate together. Whisk eggs and sugar until light, then fold into the chocolate mixture along with the flour. Bake in ramekins for 12 minutes until the edges are firm but the center is jiggly.",
+    "preparationTime": 25,
+    "categories": ["Desserts"]
+  }
+]

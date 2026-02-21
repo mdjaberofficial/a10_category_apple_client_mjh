@@ -58,11 +58,11 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   // The 404 page is outside MainLayout, so it won't render the Navbar or Footer
-  //   path: '*',
-  //   element: <NotFound />, 
-  // },
+  {
+    // The 404 page is outside MainLayout, so it won't render the Navbar or Footer
+    path: '*',
+    element: <NotFound />, 
+  },
 ]);
 
 export default router;
