@@ -8,7 +8,7 @@ const AllRecipes = () => {
 
   useEffect(() => {
     // Fetching the data from the public/data folder
-    fetch('../../public/data.json')
+    fetch('http://localhost:3000/recipes')
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to fetch recipes');

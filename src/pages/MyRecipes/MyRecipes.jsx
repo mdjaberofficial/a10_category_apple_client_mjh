@@ -13,7 +13,7 @@ const MyRecipes = () => {
     // e.g., fetch(`YOUR_API/my-recipes?email=${user?.email}`)
     
     // For now, we are fetching the dummy data and filtering it
-    fetch('/data/recipes.json')
+    fetch('http://localhost:3000/recipes')
       .then((res) => res.json())
       .then((data) => {
         // Filter recipes to show only the ones matching the logged-in user's email
@@ -34,7 +34,26 @@ const MyRecipes = () => {
       console.log(`Deleting recipe with ID: ${id}`);
       // FUTURE STEP: fetch(`YOUR_API/recipes/${id}`, { method: 'DELETE' })
       // Then remove it from the state so it disappears from the screen:
-      setMyRecipes(myRecipes.filter(recipe => recipe.id !== id));
+
+      fetch(`http://localhost:3000/recipes/${id}`, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+        .then(data => {
+          console.log('Server Response:', data);
+          if(data.deletedCount > 0) {
+            alert('Recipe deleted successfully!');
+            setMyRecipes(myRecipes.filter(recipe => recipe.id !== id));
+          } else {
+            alert('Something went wrong. Please try again.');
+    }
+      })
+      .catch((error) => {
+        console.error('Error deleting recipe:', error);
+        alert('Failed to connect to the server.');
+      }); 
+        
+      
     }
   };
 
@@ -95,19 +114,19 @@ const MyRecipes = () => {
 
                 <div className="mt-auto flex gap-3 pt-4 border-t border-gray-100">
                   <Link 
-                    to={`/recipe/${recipe.id}`} 
+                    to={`/recipe/${recipe._id}`} 
                     className="flex-1 text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-semibold py-2 rounded transition"
                   >
                     View
                   </Link>
                   <button 
-                    onClick={() => console.log('Edit clicked for', recipe.id)}
+                    onClick={() => console.log('Edit clicked for', recipe._id)}
                     className="flex-1 text-center bg-yellow-50 hover:bg-yellow-100 text-yellow-700 font-semibold py-2 rounded transition"
                   >
                     Edit
                   </button>
                   <button 
-                    onClick={() => handleDelete(recipe.id)}
+                    onClick={() => handleDelete(recipe._id)}
                     className="flex-1 text-center bg-red-50 hover:bg-red-100 text-red-600 font-semibold py-2 rounded transition"
                   >
                     Delete

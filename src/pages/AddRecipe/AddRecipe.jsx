@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router'; // or 'react-router-dom' depending on your version
 import { AuthContext } from '../../context/AuthContext';
 
 const AddRecipe = () => {
@@ -55,13 +53,31 @@ const AddRecipe = () => {
 
     console.log('New Recipe Ready to Save:', newRecipe);
 
-    // FUTURE STEP: Here is where you will do a fetch POST request to your database (MongoDB/Firebase)
-    // fetch('YOUR_API_URL/recipes', { method: 'POST', body: JSON.stringify(newRecipe) ... })
-
-    alert('Recipe form submitted! (Check your browser console to see the exact JSON object)');
-    
-    // Redirect to My Recipes page after successful submission
-    navigate('/my-recipes');
+    // Send data to the db (Matching your backend /addRecipes endpoint)
+    fetch('http://localhost:3000/addRecipes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newRecipe)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server Response:', data);
+      
+      // Check if MongoDB successfully inserted the document
+      if(data.insertedId) {
+        alert('Recipe added successfully!');
+        // Redirect to My Recipes page ONLY after successful submission
+        navigate('/my-recipes');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error saving recipe:', error);
+      alert('Failed to connect to the server.');
+    }); 
   };
 
   return (

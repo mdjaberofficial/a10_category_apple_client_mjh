@@ -12,11 +12,11 @@ const RecipeDetails = () => {
     // In a real application, you would fetch the single recipe from your backend:
     // fetch(`YOUR_API_URL/recipes/${id}`)
     
-    fetch('../../public/data.json')
+    fetch('http://localhost:3000/recipes')
       .then((res) => res.json())
       .then((data) => {
         // Find the specific recipe that matches the ID from the URL
-        const foundRecipe = data.find((r) => r.id === id);
+        const foundRecipe = data.find((r) => r._id === id);
         setRecipe(foundRecipe);
         setLoading(false);
       })
