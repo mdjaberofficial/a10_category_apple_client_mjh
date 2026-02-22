@@ -119,12 +119,14 @@ const MyRecipes = () => {
                   >
                     View
                   </Link>
-                  <button 
-                    onClick={() => console.log('Edit clicked for', recipe._id)}
-                    className="flex-1 text-center bg-yellow-50 hover:bg-yellow-100 text-yellow-700 font-semibold py-2 rounded transition"
+                 
+                 <Link 
+                    to={`/update-recipe/${recipe._id}`} 
+                    className="flex-1 text-center bg-blue-50 hover:bg-blue-100 text-blue-600 font-semibold py-2 rounded transition"
                   >
                     Edit
-                  </button>
+                  </Link>
+                    
                   <button 
                     onClick={() => handleDelete(recipe._id)}
                     className="flex-1 text-center bg-red-50 hover:bg-red-100 text-red-600 font-semibold py-2 rounded transition"

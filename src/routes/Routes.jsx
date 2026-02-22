@@ -9,6 +9,7 @@ import MyRecipes from '../pages/MyRecipes/MyRecipes';
 import RecipeDetails from '../pages/RecipeDetails/RecipeDetails';
 import NotFound from '../pages/NotFound/NotFound';
 import PrivateRoute from './PrivateRoute';
+import UpdateRecipe from '../pages/UpdateCoffee/UpdateRecipe';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <RecipeDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+      path: '/update-recipe/:id',
+      loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateRecipe />
           </PrivateRoute>
         ),
       },
