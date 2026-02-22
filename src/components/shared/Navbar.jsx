@@ -100,16 +100,20 @@ const Navbar = () => {
 
           {user ? (
             <div className="flex items-center gap-3">
-              <div 
-                className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary cursor-pointer"
-                title={user?.displayName || "User"}
-              >
-                <img 
-                  src={user?.photoURL || "https://via.placeholder.com/150"} 
-                  alt="User Avatar" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {/* Wrapped the avatar in a Link to /profile */}
+              <Link to="/profile">
+                <div 
+                  className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary hover:border-blue-500 cursor-pointer transition-colors"
+                  title={user?.displayName || "Update Profile"}
+                >
+                  <img 
+                    src={user?.photoURL || "https://via.placeholder.com/150"} 
+                    alt="User Avatar" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </Link>
+              
               <button 
                 onClick={handleLogOut} 
                 className="btn btn-error text-white btn-sm px-4 h-10"

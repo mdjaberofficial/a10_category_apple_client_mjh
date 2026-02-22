@@ -10,6 +10,7 @@ import RecipeDetails from '../pages/RecipeDetails/RecipeDetails';
 import NotFound from '../pages/NotFound/NotFound';
 import PrivateRoute from './PrivateRoute';
 import UpdateRecipe from '../pages/UpdateCoffee/UpdateRecipe';
+import Profile from '../Profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: '/profile',
+        element: (
+          <PrivateRoute>
+           <Profile></Profile>
+          </PrivateRoute>
+        ),
+      }
     ],
   },
   {
