@@ -1,11 +1,25 @@
-import React from 'react';
-import { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router'; // Note: Usually 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext';
-
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  // 1. Setup state for theme (default to light, or whatever is in localStorage)
+  const [theme, setTheme] = useState(
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+  );
+
+  // 2. Apply the theme to the HTML element whenever it changes
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  // 3. Toggle function
+  const handleToggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   const handleLogOut = () => {
     logOut()
@@ -17,13 +31,12 @@ const Navbar = () => {
       });
   };
 
-  // Define navigation links to keep the JSX clean
   const navLinks = (
     <>
       <li>
         <NavLink 
           to="/" 
-          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "hover:text-blue-500"}
+          className={({ isActive }) => isActive ? "text-primary font-bold" : "hover:text-primary"}
         >
           Home
         </NavLink>
@@ -31,18 +44,17 @@ const Navbar = () => {
       <li>
         <NavLink 
           to="/all-recipes" 
-          className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "hover:text-blue-500"}
+          className={({ isActive }) => isActive ? "text-primary font-bold" : "hover:text-primary"}
         >
           All Recipes
         </NavLink>
       </li>
-      {/* Conditionally render private routes if the user exists */}
       {user && (
         <>
           <li>
             <NavLink 
               to="/add-recipe" 
-              className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "hover:text-blue-500"}
+              className={({ isActive }) => isActive ? "text-primary font-bold" : "hover:text-primary"}
             >
               Add Recipe
             </NavLink>
@@ -50,7 +62,7 @@ const Navbar = () => {
           <li>
             <NavLink 
               to="/my-recipes" 
-              className={({ isActive }) => isActive ? "text-blue-600 font-bold" : "hover:text-blue-500"}
+              className={({ isActive }) => isActive ? "text-primary font-bold" : "hover:text-primary"}
             >
               My Recipes
             </NavLink>
@@ -61,26 +73,35 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-base-100 shadow-md sticky top-0 z-50 transition-colors duration-300">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         
         {/* Logo Section */}
-        <Link to="/" className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+        <Link to="/" className="text-2xl font-bold text-base-content flex items-center gap-2">
           <span>🍽️ RecipeBook</span>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex space-x-6 text-gray-600 font-medium">
+        <ul className="hidden md:flex space-x-6 text-base-content font-medium items-center">
           {navLinks}
         </ul>
 
-        {/* User Authentication UI */}
+        {/* User Authentication UI & Theme Toggle */}
         <div className="flex items-center gap-4">
+          
+          {/* Theme Toggle Button */}
+          <button 
+            onClick={handleToggleTheme} 
+            className="btn btn-ghost btn-circle text-xl"
+            title="Toggle Theme"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+
           {user ? (
             <div className="flex items-center gap-3">
-              {/* User Avatar with Tooltip */}
               <div 
-                className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500 cursor-pointer"
+                className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary cursor-pointer"
                 title={user?.displayName || "User"}
               >
                 <img 
@@ -89,11 +110,9 @@ const Navbar = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
-              {/* Logout Button */}
               <button 
                 onClick={handleLogOut} 
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-medium transition duration-300"
+                className="btn btn-error text-white btn-sm px-4 h-10"
               >
                 Logout
               </button>
@@ -102,13 +121,13 @@ const Navbar = () => {
             <div className="flex gap-2">
               <Link 
                 to="/login" 
-                className="text-blue-600 border border-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md font-medium transition duration-300"
+                className="btn btn-outline btn-primary btn-sm px-4 h-10"
               >
                 Login
               </Link>
               <Link 
                 to="/register" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition duration-300"
+                className="btn btn-primary text-white btn-sm px-4 h-10"
               >
                 Register
               </Link>
