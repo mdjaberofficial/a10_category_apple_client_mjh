@@ -3,6 +3,7 @@ import React from 'react';
 import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -44,6 +45,9 @@ const Login = () => {
 
   return (
     <div className="min-h-[80vh] flex justify-center items-center py-10">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back</h2>
         

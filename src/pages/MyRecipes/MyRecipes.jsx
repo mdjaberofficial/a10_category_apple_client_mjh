@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
 
 const MyRecipes = () => {
   const { user } = useContext(AuthContext);
@@ -9,52 +11,56 @@ const MyRecipes = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // In a real app, you would fetch ONLY this user's recipes from your database
-    // e.g., fetch(`YOUR_API/my-recipes?email=${user?.email}`)
-    
-    // For now, we are fetching the dummy data and filtering it
-    fetch('https://a10-category-apple-server-mjh.vercel.app/recipes')
-      .then((res) => res.json())
-      .then((data) => {
-        // Filter recipes to show only the ones matching the logged-in user's email
-        // Note: Since the dummy JSON doesn't have your email, this will result in an empty array right now!
-        const filteredRecipes = data.filter(recipe => recipe.creatorEmail === user?.email);
-        setMyRecipes(filteredRecipes);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error loading recipes:', error);
-        setLoading(false);
-      });
+    if (user?.email) {
+      fetch('https://a10-category-apple-server-mjh.vercel.app/recipes')
+        .then((res) => res.json())
+        .then((data) => {
+          const filteredRecipes = data.filter(recipe => recipe.creatorEmail === user.email);
+          setMyRecipes(filteredRecipes);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error loading recipes:', error);
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
   }, [user?.email]);
 
   const handleDelete = (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this recipe?");
-    if (confirmDelete) {
-      console.log(`Deleting recipe with ID: ${id}`);
-      // FUTURE STEP: fetch(`YOUR_API/recipes/${id}`, { method: 'DELETE' })
-      // Then remove it from the state so it disappears from the screen:
-
-      fetch(`https://a10-category-apple-server-mjh.vercel.app/recipes/${id}`, {
-        method: 'DELETE'
-      })
-      .then(response => response.json())
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://a10-category-apple-server-mjh.vercel.app/recipes/${id}`, {
+          method: 'DELETE'
+        })
+        .then(response => response.json())
         .then(data => {
-          console.log('Server Response:', data);
           if(data.deletedCount > 0) {
-            alert('Recipe deleted successfully!');
-            setMyRecipes(myRecipes.filter(recipe => recipe.id !== id));
+            Swal.fire(
+              'Deleted!',
+              'Your recipe has been deleted.',
+              'success'
+            )
+            setMyRecipes(myRecipes.filter(recipe => recipe._id !== id));
           } else {
-            alert('Something went wrong. Please try again.');
-    }
-      })
-      .catch((error) => {
-        console.error('Error deleting recipe:', error);
-        alert('Failed to connect to the server.');
-      }); 
-        
-      
-    }
+            Swal.fire('Error!', 'Something went wrong. Please try again.', 'error');
+          }
+        })
+        .catch((error) => {
+          console.error('Error deleting recipe:', error);
+          Swal.fire('Error!', 'Failed to connect to the server.', 'error');
+        });
+      }
+    });
   };
 
   if (loading) {
@@ -67,6 +73,9 @@ const MyRecipes = () => {
 
   return (
     <div className="py-10">
+      <Helmet>
+        <title>My Recipes</title>
+      </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 border-b pb-6">
         <div>
           <h1 className="text-4xl font-extrabold text-gray-800 mb-2">My Recipes</h1>
@@ -83,9 +92,8 @@ const MyRecipes = () => {
       {myRecipes.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {myRecipes.map((recipe) => (
-            <div key={recipe.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col md:flex-row">
+            <div key={recipe._id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col md:flex-row">
               
-              {/* Recipe Image - Left Side on Desktop, Top on Mobile */}
               <div className="w-full md:w-2/5 h-48 md:h-auto relative">
                 <img 
                   src={recipe.image} 
@@ -97,7 +105,6 @@ const MyRecipes = () => {
                 </div>
               </div>
 
-              {/* Recipe Content & Actions - Right Side */}
               <div className="p-5 flex flex-col flex-grow w-full md:w-3/5">
                 <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1" title={recipe.title}>
                   {recipe.title}
@@ -140,7 +147,6 @@ const MyRecipes = () => {
           ))}
         </div>
       ) : (
-        /* Empty State */
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
           <div className="text-6xl mb-4">👨‍🍳</div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">No Recipes Yet</h2>

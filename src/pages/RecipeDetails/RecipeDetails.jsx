@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router'; 
 import { AuthContext } from '../../context/AuthContext'; 
 import Swal from 'sweetalert2'; 
+import { Helmet } from 'react-helmet';
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -90,6 +91,9 @@ const RecipeDetails = () => {
   if (!recipe) {
     return (
       <div className="text-center py-20 min-h-[60vh] flex flex-col justify-center items-center">
+        <Helmet>
+          <title>Recipe Not Found</title>
+        </Helmet>
         <h2 className="text-4xl font-extrabold text-gray-800 mb-4">Recipe Not Found</h2>
         <p className="text-gray-600 mb-8 text-lg">The recipe you are looking for might have been removed or doesn't exist.</p>
         <Link 
@@ -104,6 +108,9 @@ const RecipeDetails = () => {
 
   return (
     <div className="py-10 max-w-5xl mx-auto px-4">
+      <Helmet>
+        <title>{recipe ? recipe.title : 'Recipe Details'}</title>
+      </Helmet>
       
       {/* Required Text: People interested */}
       <div className="text-center mb-6">

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center px-4 text-center">
+      <Helmet>
+        <title>404 - Page Not Found</title>
+      </Helmet>
       {/* Food-Themed Graphic/Emoji */}
       <div className="text-9xl mb-6 shadow-sm drop-shadow-md">
         🍳

@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
@@ -52,6 +53,9 @@ const Register = () => {
 
   return (
     <div className="min-h-[80vh] flex justify-center items-center py-10">
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Create an Account</h2>
         

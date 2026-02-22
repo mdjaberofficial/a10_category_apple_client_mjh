@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 const AllRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -45,6 +46,9 @@ const AllRecipes = () => {
 
   return (
     <div className="py-10">
+      <Helmet>
+        <title>All Recipes</title>
+      </Helmet>
       <div className="text-center mb-8">
         <h1 className="text-4xl font-extrabold text-gray-800 mb-4">All Recipes</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">

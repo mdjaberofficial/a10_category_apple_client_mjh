@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router'; // or 'react-router-dom' depending on your version
 import { AuthContext } from '../../context/AuthContext';
+import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
 
 const AddRecipe = () => {
   const { user } = useContext(AuthContext);
@@ -15,10 +17,8 @@ const AddRecipe = () => {
   const [instructions, setInstructions] = useState('');
   const [categories, setCategories] = useState([]);
 
-  // The 4 strict categories you requested
   const categoryOptions = ['Breakfast', 'Lunch', 'Dinner', 'Desserts'];
 
-  // Handle checking/unchecking categories
   const handleCategoryChange = (e) => {
     const value = e.target.value;
     if (categories.includes(value)) {
@@ -32,28 +32,23 @@ const AddRecipe = () => {
     e.preventDefault();
 
     if (categories.length === 0) {
-      alert('Please select at least one category.');
+      Swal.fire('Oops...', 'Please select at least one category.', 'error');
       return;
     }
 
-    // Construct the final object exactly matching your JSON structure
     const newRecipe = {
       title,
       image,
       cuisineType,
       preparationTime: parseInt(preparationTime),
-      // Splits the textarea by line breaks and removes empty lines
       ingredients: ingredients.split('\n').map(item => item.trim()).filter(item => item !== ''),
       instructions,
       categories,
-      likeCount: 0, // Initially 0 as requested
-      creatorEmail: user?.email, // Tie the recipe to the logged-in user
+      likeCount: 0,
+      creatorEmail: user?.email,
       creatorName: user?.displayName
     };
 
-    console.log('New Recipe Ready to Save:', newRecipe);
-
-    // Send data to the db (Matching your backend /addRecipes endpoint)
     fetch('https://a10-category-apple-server-mjh.vercel.app/recipes/addRecipes', {
       method: 'POST',
       headers: {
@@ -63,25 +58,24 @@ const AddRecipe = () => {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Server Response:', data);
-      
-      // Check if MongoDB successfully inserted the document
       if(data.insertedId) {
-        alert('Recipe added successfully!');
-        // Redirect to My Recipes page ONLY after successful submission
+        Swal.fire('Success!', 'Recipe added successfully!', 'success');
         navigate('/my-recipes');
       } else {
-        alert('Something went wrong. Please try again.');
+        Swal.fire('Error!', 'Something went wrong. Please try again.', 'error');
       }
     })
     .catch((error) => {
       console.error('Error saving recipe:', error);
-      alert('Failed to connect to the server.');
+      Swal.fire('Error!', 'Failed to connect to the server.', 'error');
     }); 
   };
 
   return (
     <div className="py-10 max-w-4xl mx-auto px-4">
+      <Helmet>
+        <title>Add a New Recipe</title>
+      </Helmet>
       <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-extrabold text-gray-800">Add a New Recipe</h2>
