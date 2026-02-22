@@ -19,7 +19,7 @@ const UpdateRecipe = () => {
 
   // 1. Fetch exactly the ONE recipe you need from the backend
   useEffect(() => {
-    fetch(`http://localhost:3000/recipes/${id}`)
+    fetch(`https://a10-category-apple-server-mjh.vercel.app/recipes/${id}`)
       .then((res) => res.json())
       .then((recipeToUpdate) => {
         // Now you don't need .find(), the backend gives you the exact object
@@ -76,7 +76,7 @@ const UpdateRecipe = () => {
     console.log('Sending PUT request with data:', updatedRecipe);
 
     // Fixed the URL to dynamically insert the ID using ${id} instead of :id
-    fetch(`http://localhost:3000/recipes/${id}`, {
+    fetch(`https://a10-category-apple-server-mjh.vercel.app/recipes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

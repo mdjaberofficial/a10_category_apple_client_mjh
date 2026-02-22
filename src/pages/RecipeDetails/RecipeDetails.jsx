@@ -12,7 +12,7 @@ const RecipeDetails = () => {
     // In a real application, you would fetch the single recipe from your backend:
     // fetch(`YOUR_API_URL/recipes/${id}`)
     
-    fetch('http://localhost:3000/recipes')
+    fetch('https://a10-category-apple-server-mjh.vercel.app/recipes')
       .then((res) => res.json())
       .then((data) => {
         // Find the specific recipe that matches the ID from the URL

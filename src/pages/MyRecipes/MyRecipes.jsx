@@ -13,7 +13,7 @@ const MyRecipes = () => {
     // e.g., fetch(`YOUR_API/my-recipes?email=${user?.email}`)
     
     // For now, we are fetching the dummy data and filtering it
-    fetch('http://localhost:3000/recipes')
+    fetch('https://a10-category-apple-server-mjh.vercel.app/recipes')
       .then((res) => res.json())
       .then((data) => {
         // Filter recipes to show only the ones matching the logged-in user's email
@@ -35,7 +35,7 @@ const MyRecipes = () => {
       // FUTURE STEP: fetch(`YOUR_API/recipes/${id}`, { method: 'DELETE' })
       // Then remove it from the state so it disappears from the screen:
 
-      fetch(`http://localhost:3000/recipes/${id}`, {
+      fetch(`https://a10-category-apple-server-mjh.vercel.app/recipes/${id}`, {
         method: 'DELETE'
       })
       .then(response => response.json())
@@ -126,7 +126,7 @@ const MyRecipes = () => {
                   >
                     Edit
                   </Link>
-                    
+
                   <button 
                     onClick={() => handleDelete(recipe._id)}
                     className="flex-1 text-center bg-red-50 hover:bg-red-100 text-red-600 font-semibold py-2 rounded transition"

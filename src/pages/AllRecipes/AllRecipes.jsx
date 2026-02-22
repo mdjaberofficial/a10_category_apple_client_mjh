@@ -8,7 +8,7 @@ const AllRecipes = () => {
 
   useEffect(() => {
     // Fetching the data from the public/data folder
-    fetch('http://localhost:3000/recipes')
+    fetch('https://a10-category-apple-server-mjh.vercel.app/recipes')
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to fetch recipes');

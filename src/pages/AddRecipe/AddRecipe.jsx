@@ -54,7 +54,7 @@ const AddRecipe = () => {
     console.log('New Recipe Ready to Save:', newRecipe);
 
     // Send data to the db (Matching your backend /addRecipes endpoint)
-    fetch('http://localhost:3000/addRecipes', {
+    fetch('https://a10-category-apple-server-mjh.vercel.app/recipes/addRecipes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
