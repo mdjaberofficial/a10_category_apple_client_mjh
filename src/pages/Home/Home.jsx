@@ -1,8 +1,29 @@
-import React from 'react';
-
-import { Link } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router'; // react-router-dom
 
 const Home = () => {
+  const [featuredRecipes, setFeaturedRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch all recipes
+    fetch('https://a10-category-apple-server-mjh.vercel.app/recipes')
+      .then((res) => res.json())
+      .then((data) => {
+        // Optional: Sort by likeCount (highest to lowest) to show popular recipes
+        const sortedRecipes = data.sort((a, b) => (b.likeCount || 0) - (a.likeCount || 0));
+        
+        // Grab only the first 6 recipes
+        const top6Recipes = sortedRecipes.slice(0, 6);
+        
+        setFeaturedRecipes(top6Recipes);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching featured recipes:', error);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="space-y-16 mb-16">
       
@@ -48,7 +69,84 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. Call to Action / Newsletter Section */}
+      {/* 3. Featured Recipes Section (Top 6) */}
+      <section className="container mx-auto px-4">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Featured Recipes</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Check out our most popular, mouth-watering dishes right now.
+          </p>
+        </div>
+
+        {loading ? (
+          <div className="flex justify-center items-center h-40">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredRecipes.map((recipe) => (
+              <div 
+                key={recipe._id || recipe.id} 
+                className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col"
+              >
+                {/* Recipe Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={recipe.image} 
+                    alt={recipe.title} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-sm font-bold text-gray-700 shadow-sm flex items-center gap-1">
+                    ❤️ {recipe.likeCount || 0}
+                  </div>
+                </div>
+
+                {/* Recipe Content */}
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-gray-800 line-clamp-1 mb-2" title={recipe.title}>
+                    {recipe.title}
+                  </h3>
+                  
+                  {/* Badges */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded-full font-medium border border-blue-100">
+                      {recipe.cuisineType}
+                    </span>
+                    <span className="bg-orange-50 text-orange-600 text-xs px-2 py-1 rounded-full font-medium border border-orange-100">
+                      ⏱️ {recipe.preparationTime} mins
+                    </span>
+                  </div>
+
+                  {/* Categories */}
+                  <p className="text-sm text-gray-500 mb-6 flex-grow">
+                    <span className="font-semibold">Categories:</span> {recipe.categories?.join(', ')}
+                  </p>
+
+                  {/* View Details Button */}
+                  <Link 
+                    to={`/recipe/${recipe._id || recipe.id}`} 
+                    className="mt-auto block text-center bg-gray-50 hover:bg-blue-600 text-gray-700 hover:text-white border border-gray-200 hover:border-blue-600 font-semibold py-2.5 rounded-lg transition duration-300"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 4. View All Button */}
+        <div className="text-center mt-12">
+          <Link 
+            to="/all-recipes" 
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            View All Recipes
+          </Link>
+        </div>
+      </section>
+
+      {/* 4. Call to Action / Newsletter Section */}
       <section className="bg-gray-800 text-white rounded-2xl p-10 text-center shadow-lg">
         <h2 className="text-3xl font-bold mb-4">Join Our Newsletter</h2>
         <p className="text-gray-300 mb-6 max-w-lg mx-auto">
